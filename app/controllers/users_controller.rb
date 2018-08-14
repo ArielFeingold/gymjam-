@@ -1,26 +1,19 @@
 class UsersController < ApplicationController
 
-  def new
-
-  end
-
   def create
-
+    @user = User.new(user_params)
+    if @user.save
+      render :json => @user
+    end
   end
 
-  def edit
+  private
 
-  end
-
-  def update
-
-  end
-
-  def show
-
-  end
-
-  def destroy
-  end
-
+  def user_params
+    params.permit(
+      :email,
+      :password,
+      :password_confirmation,
+      )
+    end
 end
