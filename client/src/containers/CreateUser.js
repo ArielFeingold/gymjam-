@@ -6,12 +6,15 @@ class CreateUser extends Component {
   createUser = (user) => {
     fetch("http://localhost:3001/api/users", {
       method: "POST",
-      body: JSON.stringify({params:{
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         name: user.username,
         email: user.email,
         password: user.password,
         password_confirmation: user.password_confirmation
-      }})
+      })
     })
     .then( (response) => {
        let myData = response.json()
